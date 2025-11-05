@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collidea — Find your team. Build real projects.</title>
+  <meta name="description" content="Match by interests, skills, and goals. Start today with Collidea." />
+  <style>
+    :root{
+      --burgundy:#800020; /* primary */
+      --burgundy-2:#a0122f; /* accent */
+      --ink:#1e1b1c;
+      --paper:#f6efe9; /* warm background */
+      --panel:#fff9f5;
+      --muted:#6b6461;
+      --ring:rgba(128,0,32,.25);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;color:var(--ink);background:var(--paper)}
+    a{color:var(--burgundy);text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);border-bottom:1px solid #eee;background:rgba(246,239,233,.7)}
+    .nav{display:flex;align-items:center;gap:16px}
+    .brand{font-weight:900;letter-spacing:.2px;text-transform:lowercase}
+    .brand span{color:var(--burgundy)}
+    .spacer{flex:1}
+    .btn{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid var(--burgundy);background:var(--burgundy);color:#fff;box-shadow:0 8px 24px -10px var(--ring);cursor:pointer;transition:transform .06s ease, box-shadow .2s ease}
+    .btn.ghost{background:#fff;color:var(--burgundy)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero .inner{padding:64px 16px 24px;text-align:left}
+    .display{font-size:clamp(32px,7vw,64px);line-height:1.05;margin:0 0 10px}
+    .sub{color:#f7f2ee;opacity:.95;font-weight:500}
+
+    /* Curves */
+    .curve{position:absolute;inset:0;z-index:-1;}
+    .curve svg{width:100%;height:100%}
+
+    /* Chips input */
+    .chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px;border-radius:16px;background:#fff;box-shadow:0 12px 30px -18px rgba(0,0,0,.3);border:1px solid #efe6df}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f4ece7;border:1px solid #e9ddd6;font-size:14px}
+    .chip button{border:0;background:transparent;cursor:pointer;opacity:.6}
+    .chips input{flex:1;min-width:120px;border:0;outline:none;font-size:14px}
+
+    /* Layout */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 12;background:#fff;border:1px solid #efe6df;border-radius:16px;padding:20px;box-shadow:0 14px 32px -20px rgba(0,0,0,.25)}
+    @media(min-width:860px){.col-6{grid-column:span 6}}
+
+    h2{margin:0 0 12px;font-size:22px}
+    .muted{color:var(--muted)}
+
+    /* Idea cards */
+    .idea{min-height:160px;background:var(--panel);position:relative}
+    .idea .title{font-weight:800;font-size:22px;margin:0 0 6px}
+    .actions{display:flex;gap:16px;align-items:center;margin-top:8px;color:var(--muted);font-size:14px}
+    .actions button{border:0;background:transparent;cursor:pointer}
+
+    /* Trending tiles */
+    .pill{display:inline-flex;align-items:center;gap:10px;padding:16px 18px;border-radius:14px;border:1px solid #efe6df;background:#fff}
+
+    /* Spotlight */
+    .spot{display:flex;gap:16px;align-items:flex-start}
+    .avatar{width:84px;height:84px;border-radius:50%;background:#e9ddd6;flex:none;display:flex;align-items:center;justify-content:center;font-weight:700}
+    blockquote{margin:0;font-size:18px}
+    cite{display:block;margin-top:6px;color:var(--muted);font-style:normal}
+
+    footer{padding:28px 16px;text-align:center;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand" aria-label="collidea brand">coll<span>idea</span></div>
+      <div class="spacer"></div>
+      <button class="btn ghost" onclick="alert('Coming soon: partner finder')">Find a partner</button>
+      <button class="btn" onclick="document.getElementById('share').scrollIntoView({behavior:'smooth'})">Share an idea</button>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="intro">
+    <div class="curve" aria-hidden="true">
+      <!-- simple abstract curves -->
+      <svg viewBox="0 0 1600 600" preserveAspectRatio="none">
+        <path d="M0,0 H1600 V240 Q1200,320 900,180 T0,260 Z" fill="#d43a2f"/>
+        <path d="M0,120 Q420,260 860,220 T1600,300 V0 H0 Z" fill="#5a2323" opacity=".95"/>
+        <circle cx="1500" cy="60" r="260" fill="#301617"/>
+      </svg>
+    </div>
+    <div class="wrap inner" style="color:#fff">
+      <h1 class="display">Find your team.<br/>Build real projects.</h1>
+      <div class="sub">Match by interests, skills, and goals. Start today.</div>
+      <div style="height:18px"></div>
+      <div class="chips" aria-label="Interests">
+        <span class="muted" style="font-weight:600">I'm into…</span>
+        <span class="chip">AI <button aria-label="remove" onclick="removeChip(this)">×</button></span>
+        <span class="chip">biology <button aria-label="remove" onclick="removeChip(this)">×</button></span>
+        <span class="chip">UI design <button aria-label="remove" onclick="removeChip(this)">×</button></span>
+        <input id="chipInput" placeholder="type an interest and press Enter" />
+        <button class="btn" style="margin-left:auto" onclick="matchMe()">Match me</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap" style="margin-top:20px">
+    <section class="grid" aria-labelledby="ideas-title">
+      <div class="card idea col-6">
+        <h2 id="ideas-title" class="title">Idea of the Day</h2>
+        <p class="muted">A daily creative prompt to spark collaboration. Post your spin and recruit partners.</p>
+        <div class="actions">
+          <button onclick="like(this)">♡ Like</button>
+          <button onclick="discuss()">💬 Disc</button>
+          <button onclick="join(this)">👥 Join</button>
+        </div>
+      </div>
+      <div class="card idea col-6">
+        <h2 class="title">App chat helps students find non‑profits in need</h2>
+        <p class="muted">A matchmaking chat connects student teams to local NGOs for weekend sprints.</p>
+        <div class="actions">
+          <button onclick="like(this)">♡ Like</button>
+          <button onclick="discuss()">💬 Disc</button>
+          <button onclick="join(this)">👥 Join</button>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:18px">
+      <h2>Trending challenges</h2>
+      <div class="grid">
+        <div class="pill col-6">
+          <span>📶</span>
+          <div>
+            <div style="font-weight:700">Upgrade local Wi‑Fi</div>
+            <div class="muted">2 days left</div>
+          </div>
+        </div>
+        <div class="pill col-6">
+          <span>🎮</span>
+          <div>
+            <div style="font-weight:700">Gamify education</div>
+            <div class="muted">New</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:24px">
+      <h2>Spotlight stories</h2>
+      <div class="spot card">
+        <div class="avatar" aria-hidden="true">S</div>
+        <div>
+          <blockquote>“Collidea connected me with three incredible partners. Frankly, this project would not exist without it.”</blockquote>
+          <cite>Sofia, Ecc. Eco Pathways</cite>
+        </div>
+      </div>
+    </section>
+
+    <section id="share" class="card" style="margin-top:24px">
+      <h2>Share an idea</h2>
+      <form id="ideaForm" class="grid">
+        <div class="col-6">
+          <label class="muted">Title</label>
+          <input id="ideaTitle" placeholder="e.g., Campus food waste tracker" required />
+        </div>
+        <div class="col-6">
+          <label class="muted">Your contact</label>
+          <input id="ideaContact" placeholder="Email or Telegram" required />
+        </div>
+        <div class="col-12">
+          <label class="muted">Short description</label>
+          <textarea id="ideaDesc" placeholder="What is it? Why is it useful?" style="width:100%;min-height:110px" required></textarea>
+        </div>
+        <div class="col-12">
+          <button class="btn" type="submit">Post idea</button>
+          <span class="muted" style="margin-left:8px">Saved locally (no server yet).</span>
+        </div>
+      </form>
+      <div id="ideasList" class="grid" style="margin-top:12px"></div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Collidea — where students build together.</footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* Chips input logic */
+    function removeChip(btn){ btn.parentElement.remove(); }
+    const chipInput = document.getElementById('chipInput');
+    chipInput.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter' && chipInput.value.trim()){
+        e.preventDefault();
+        const span = document.createElement('span');
+        span.className='chip';
+        span.innerHTML = `${escapeHtml(chipInput.value.trim())} <button aria-label="remove" onclick="removeChip(this)">×</button>`;
+        chipInput.before(span);
+        chipInput.value='';
+      }
+      if(e.key==='Backspace' && !chipInput.value){ const chips = chipInput.parentElement.querySelectorAll('.chip'); chips[chips.length-1]?.remove(); }
+    });
+
+    function matchMe(){
+      const chips = Array.from(document.querySelectorAll('.chips .chip')).map(c=>c.textContent.trim());
+      alert('Matching on: '+ chips.join(', ')+"\n(Prototype — hook this to your backend later.)");
+    }
+
+    /* Idea list (local) */
+    const key='collidea.ideas.v1';
+    const list=document.getElementById('ideasList');
+    function escapeHtml(s=''){ return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m])); }
+
+    function renderIdeas(){
+      const arr=JSON.parse(localStorage.getItem(key)||'[]');
+      list.innerHTML = arr.map((it,i)=>`<div class='card col-6'><strong>${escapeHtml(it.t)}</strong><p class='muted' style='margin:6px 0'>${escapeHtml(it.d)}</p><div class='actions'><button onclick='like(this)'>♡ Like</button><button onclick='join(this)'>👥 Join</button><button onclick='delIdea(${i})'>🗑️ Delete</button></div><div class='muted' style='margin-top:6px'>Contact: ${escapeHtml(it.c)}</div></div>`).join('');
+    }
+    function delIdea(i){ const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.splice(i,1); localStorage.setItem(key,JSON.stringify(arr)); renderIdeas(); }
+
+    document.getElementById('ideaForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const t=document.getElementById('ideaTitle').value.trim();
+      const c=document.getElementById('ideaContact').value.trim();
+      const d=document.getElementById('ideaDesc').value.trim();
+      if(!t||!c||!d){ alert('Fill all fields'); return; }
+      const arr=JSON.parse(localStorage.getItem(key)||'[]');
+      arr.unshift({t,c,d,ts:Date.now()});
+      localStorage.setItem(key, JSON.stringify(arr));
+      e.target.reset();
+      renderIdeas();
+    });
+
+    function like(btn){ btn.textContent = '♥ Liked'; }
+    function join(btn){ btn.textContent = '✅ Joined'; }
+    function discuss(){ alert('Open discussion thread (prototype)'); }
+
+    renderIdeas();
+  </script>
+</body>
+</html>
